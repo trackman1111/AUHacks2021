@@ -66,7 +66,7 @@ us_state_abbrev = {
 }
 
 if __name__ == '__main__':
-    mainFile = open('CountyData.csv', 'w')
+    mainFile = open('CountyData.csv', 'w', newline='')
     csv_writer = csv.writer(mainFile)
     csv_writer.writerow(["County", "State", "Mask Mandate", "Case per 100k", "Case Change", "Death Change",
                          "Positivity Rate"])
