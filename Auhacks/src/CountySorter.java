@@ -5,15 +5,23 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Script {
-	static List<List<String>> lines = new ArrayList<>();
+public class CountySorter {
+	private static List<List<String>> lines = new ArrayList<>();
+	private static boolean maskPreference;
+	
+	
+	public CountySorter(boolean m)
+	{
+		this.maskPreference = false;
+	}
 	
 	public static void main(String[] args) throws IOException {
 		// TODO Auto-generated method stub
 		String fileName = "CountyData.csv";
+		String countyCenters = "county_centers.csv";
 		File file = new File(fileName);
 		System.out.println("Attempting to read from file in: " + file.getCanonicalPath());
-		
+
 		
 		Scanner inputStream;
 		try {
@@ -35,18 +43,13 @@ public class Script {
 		maskDelete();
 		
 		int lineNo = 1;
-		for(List<String> line: lines) {
-			int columnNo = 1;
-			for (String value: line) {
-				System.out.println("Line " + lineNo + " Column " + columnNo + ": " + value);
-				columnNo++;
-			}
-			lineNo++;
-			
-		}
+//		for(List<String> line: lines) {
+//				System.out.println("Line " + lineNo + " Data:" + line);
+//				lineNo++;
+//			
+//		}
 		
-		//Testing getData method
-		System.out.println(getData(lines, 4, 2));
+		System.out.println(lines.size());
 	}
 	
 	
@@ -58,12 +61,13 @@ public class Script {
 	public static void maskDelete() {
 		
 		for(int i = 0; i < lines.size() - 1; i++) {
-			if (getData(lines, i, 2).contains("No")) {
-				//System.out.println("noted");
+			if (getData(lines, i, 3).contains("No")) {
+				System.out.println("noted");
 				lines.remove(i);
 				i--;
 			}
 		}
+		System.out.println("Done");
 		
 	}
 

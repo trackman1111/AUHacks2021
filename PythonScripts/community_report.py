@@ -1,3 +1,4 @@
+import csv
 import urllib
 
 from bs4 import BeautifulSoup
@@ -7,6 +8,8 @@ xls = pandas.ExcelFile("CommunityProfile.xlsx")
 sheet1 = pandas.read_excel(xls, "Counties")
 
 
+
+
 def main():
     first_column = sheet1.iloc[:, [0, 5, 16, 19, 20, 36]]
     print(first_column)
@@ -14,6 +17,10 @@ def main():
 
 def get_counties():
     return sheet1.iloc[:, 0]
+
+
+def get_fips_codes():
+    return sheet1.iloc[:, 1]
 
 
 def get_state():

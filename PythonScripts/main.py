@@ -69,7 +69,7 @@ us_state_abbrev = {
 if __name__ == '__main__':
     mainFile = open('CountyData.csv', 'w', newline='')
     csv_writer = csv.writer(mainFile)
-    csv_writer.writerow(["County", "State", "Mask Mandate", "Case per 100k", "Case Change", "Death Change",
+    csv_writer.writerow(["County", "State", "FIPS", "Mask Mandate", "Case per 100k", "Case Change", "Death Change",
                          "Positivity Rate", "Restaurant Status"])
 
     mask_orders = maskMandateScraper.get_mask_orders()
@@ -79,8 +79,9 @@ if __name__ == '__main__':
     case_increase = community_report.case_increase()
     death_increase = community_report.death_increase()
     infectivity = community_report.infectivity_rate()
+    fips = community_report.get_fips_codes()
     state = community_report.get_state()
     for i in range(1, 3273):
         currentState = us_state_abbrev.get(state[i])
-        csv_writer.writerow([counties[i].replace(',',' '), currentState, mask_orders.get(currentState), cases_per_100k[i], case_increase[i],
+        csv_writer.writerow([counties[i].replace(',',' '), currentState, fips[i], mask_orders.get(currentState), cases_per_100k[i], case_increase[i],
                              death_increase[i], infectivity[i], restaurant_status.get(currentState)])
