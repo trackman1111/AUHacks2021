@@ -5,7 +5,7 @@ import csv
 import community_report
 import maskMandateScraper
 
-states = {
+us_state_abbrev = {
         'AK': 'Alaska',
         'AL': 'Alabama',
         'AR': 'Arkansas',
@@ -68,11 +68,17 @@ states = {
 if __name__ == '__main__':
     mainFile = open('CountyData.csv', 'w')
     csv_writer = csv.writer(mainFile)
-    csv_writer.writerow(["County", "State", "Mask Mandate", "Case per 100k", "Case Increase", "Death Increase",
+    csv_writer.writerow(["County", "State", "Mask Mandate", "Case per 100k", "Case Change", "Death Change",
                          "Positivity Rate"])
 
+    mask_orders = maskMandateScraper.get_mask_orders()
     counties = community_report.get_counties()
+    cases_per_100k = community_report.get_cases_per_100k()
+    case_increase = community_report.case_increase()
+    death_increase = community_report.death_increase()
+    infectivity = community_report.infectivity_rate()
     state = community_report.get_state()
     for i in range(1, 3273):
         currentState = us_state_abbrev.get(state[i])
-        csv_writer.writerow([counties[i], currentState, maskMandateScraper.get_mask_orders().get(currentState), "", "", "", ""])
+        csv_writer.writerow([counties[i], currentState, mask_orders.get(currentState), cases_per_100k[i], case_increase[i],
+                             death_increase[i], infectivity[i]])
