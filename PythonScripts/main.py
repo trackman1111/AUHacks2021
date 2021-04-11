@@ -80,5 +80,5 @@ if __name__ == '__main__':
     state = community_report.get_state()
     for i in range(1, 3273):
         currentState = us_state_abbrev.get(state[i])
-        csv_writer.writerow([counties[i], currentState, mask_orders.get(currentState), cases_per_100k[i], case_increase[i],
+        csv_writer.writerow([counties[i].replace(',',' '), currentState, mask_orders.get(currentState), cases_per_100k[i], case_increase[i],
                              death_increase[i], infectivity[i]])
