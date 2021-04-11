@@ -33,6 +33,5 @@ def get_mask_orders():
 
     return dict(zip(states,orders))
 
-get_mask_orders()
 
 
