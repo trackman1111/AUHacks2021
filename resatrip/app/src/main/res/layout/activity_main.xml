@@ -27,6 +27,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.044" />
+<<<<<<< HEAD
 
     <EditText
         android:id="@+id/editTextTextPersonName"
@@ -37,4 +38,6 @@
         android:text="Name"
         tools:layout_editor_absoluteX="97dp"
         tools:layout_editor_absoluteY="201dp" />
+=======
+>>>>>>> parent of 1fe83e6... Alex work :)
 </androidx.constraintlayout.widget.ConstraintLayout>
